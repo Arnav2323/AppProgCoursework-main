@@ -11,6 +11,10 @@ let sleepButton;
 let feedPetTxt; 
 let sleepPetTxt; 
 let cleanPetTxt;
+export let redSlider;
+export let greenSlider;
+export let blueSlider;
+export let setColor;
 
 //gets all the buttonns and text I want to read/write
 //adds event listeners to buttons that call 
@@ -22,12 +26,18 @@ function eventListeners(){
     feedPetTxt = document.querySelector("#foodText");
     sleepPetTxt = document.querySelector("#sleepText");
     cleanPetTxt = document.querySelector("#cleanText");
+    redSlider = document.querySelector("#redSlider");
+    greenSlider = document.querySelector("#greenSlider");
+    blueSlider = document.querySelector("#blueSlider");
+    setColor = document.querySelector("#setColor");
 
 
     feedButton.addEventListener("click",pet.feedPet);
     cleanButton.addEventListener("click",pet.cleanPet);
     sleepButton.addEventListener("click",pet.sleepPet);
+    setColor.addEventListener("click", pet.setColor);
 }
+
 
 export function ui(){
     if(pet.stats.hungry){

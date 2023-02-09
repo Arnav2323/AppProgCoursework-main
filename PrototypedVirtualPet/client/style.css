@@ -3,6 +3,7 @@
     /*border: solid green 1px;*/
 }
 
+
 head{
     padding-bottom: 1em;
 }
@@ -38,6 +39,20 @@ button:hover{
 
 #eyes{
     animation: blink 4.0s infinite;
+}
+
+#rgbSliders{
+    outline-width: 0.1em;
+    outline-color: fuchsia;
+    outline-style: solid;
+    list-style: none;
+    color: white;
+}
+
+#setColor{
+    font-size: 1em;
+    height: 2em;
+    width: 10em;
 }
 
 @keyframes borderColor{

@@ -31,7 +31,7 @@
         </svg> -->
 
         <svg id="petWindow" width="500" height="500" viewbox="-250,-250 500,500">
-            <circle cx="0" cy="0" r="100" fill="brown"/>
+            <circle id="skinColor" cx="0" cy="0" r="100" fill="brown"/>
               
             <defs>
                 <g stroke="white" id="eyes" > 
@@ -42,14 +42,7 @@
 
             <use href="#eyes" y="-10"/>
             
-            <g stroke="black" id="smile">
-                <line x1="-25" y1="50" x2="25" y2="50"></line>
-                <line x1="-30" y1="45" x2="30" y2="45"></line>
-                <line x1="-30" y1="45" x2="-25" y2="50"></line>
-                <line x1="25" y1="50" x2="30" y2="45"></line>
-                <line x1="0" y1="75" x2="30" y2="45"></line>
-                <line x1="0" y1="75" x2="-30" y2="45"></line>
-            </g>
+            <polygon id="smile" points="-25,50 25,50 0,75" />
 
             <g stroke="pink" id="hat">
                 <line x1="-80" y1="-100" x2="80" y2="-100"></line>
@@ -60,6 +53,15 @@
             
         </svg>
 
+        <ul id="rgbSliders">
+            <li><label for="redSlider">Red</label></li>
+            <li><input type="range" id="redSlider" min="0" max="255"></li>
+            <li><label for="greenSlider">Green</label></li>
+            <li><input type="range" id="greenSlider" min="0" max="255"></li>
+            <li><label for="blueSlider">Blue</label></li>
+            <li><input type="range" id="blueSlider" min="0" max="255"></li>
+            <li><button id="setColor">Set Color</button></li>
+        </ul>
         <p id="foodText">Food Stat: </p>
         <button id="feedButton">Feed Pet</button>
         <p id="sleepText">Sleep Stat: </p>

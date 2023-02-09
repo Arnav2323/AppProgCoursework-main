@@ -1,4 +1,13 @@
 "use strict";
+import * as ui from '/ui.mjs'
+
+window.addEventListener("load", eventListeners);
+
+let petColor;
+
+function eventListeners(){
+    petColor = document.querySelector("#skinColor");
+}
 
 //Flags for certain behaviours to occur
 //export let hungry = false;
@@ -19,8 +28,19 @@ export let stats = {
     name : "default",
     food : 50,
     cleanliness : 50,
-    sleep : 50
+    sleep : 50,
+    hungry : false,
+    needClean : false,
+    needSleep : false
 };
+
+export function setColor(){
+    //console.log(petColor);
+    //console.log("red slider: " + ui.redSlider.value);
+    //console.log("green slider: " + ui.greenSlider.value);
+    //console.log("blue slider: " + ui.blueSlider.value);
+    petColor.style.fill = `rgb(${ui.redSlider.value}, ${ui.greenSlider.value}, ${ui.blueSlider.value})`;
+}
 
 export function feedPet(){
     if((stats.food + foodInc) > 100){ 
