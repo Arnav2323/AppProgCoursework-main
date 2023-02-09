@@ -14,7 +14,8 @@ let cleanPetTxt;
 export let redSlider;
 export let greenSlider;
 export let blueSlider;
-export let setColor;
+export let saveColor;
+export let revertColor;
 
 //gets all the buttonns and text I want to read/write
 //adds event listeners to buttons that call 
@@ -29,13 +30,18 @@ function eventListeners(){
     redSlider = document.querySelector("#redSlider");
     greenSlider = document.querySelector("#greenSlider");
     blueSlider = document.querySelector("#blueSlider");
-    setColor = document.querySelector("#setColor");
+    saveColor = document.querySelector("#saveColor");
+    revertColor = document.querySelector("#revertColor");
 
 
     feedButton.addEventListener("click",pet.feedPet);
     cleanButton.addEventListener("click",pet.cleanPet);
     sleepButton.addEventListener("click",pet.sleepPet);
-    setColor.addEventListener("click", pet.setColor);
+    saveColor.addEventListener("click", pet.saveColor);
+    revertColor.addEventListener("click", pet.revertColor);
+    redSlider.addEventListener("click", pet.previewColor);
+    greenSlider.addEventListener("click", pet.previewColor);
+    blueSlider.addEventListener("click", pet.previewColor);
 }
 
 

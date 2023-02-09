@@ -6,8 +6,6 @@
     </head>
 
     <body>
-        <h1>Prototype evented HTML for Virtual Pet</h1>
-        
         <!-- <svg id="pet" width="500" height="500">
             <circle cx="250" cy="100" r="100" fill="brown"/>
 
@@ -51,23 +49,28 @@
             </g>
             
             
-        </svg>
+        </svg>        
 
         <ul id="rgbSliders">
+            <li><h1>Pet Color Changer<h1></li>
             <li><label for="redSlider">Red</label></li>
             <li><input type="range" id="redSlider" min="0" max="255"></li>
             <li><label for="greenSlider">Green</label></li>
             <li><input type="range" id="greenSlider" min="0" max="255"></li>
             <li><label for="blueSlider">Blue</label></li>
             <li><input type="range" id="blueSlider" min="0" max="255"></li>
-            <li><button id="setColor">Set Color</button></li>
+            <li><button id="revertColor">Revert Color</button></li>
+            <li><button id="saveColor">Save Color</button></li>
         </ul>
-        <p id="foodText">Food Stat: </p>
-        <button id="feedButton">Feed Pet</button>
-        <p id="sleepText">Sleep Stat: </p>
-        <button id="sleepButton">Sleep Pet</button>
-        <p id="cleanText">Cleanliness Stat: </p>
-        <button id="cleanButton">Clean Pet</button>  
+
+        <div id="petStats">
+            <p id="foodText">Food Stat: </p>
+            <button id="feedButton">Feed Pet</button>
+            <p id="sleepText">Sleep Stat: </p>
+            <button id="sleepButton">Sleep Pet</button>
+            <p id="cleanText">Cleanliness Stat: </p>
+            <button id="cleanButton">Clean Pet</button>  
+        </div>
     </body>
 
     

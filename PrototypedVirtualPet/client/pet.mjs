@@ -4,6 +4,9 @@ import * as ui from '/ui.mjs'
 window.addEventListener("load", eventListeners);
 
 let petColor;
+let oldRed;
+let oldGreen;
+let oldBlue;
 
 function eventListeners(){
     petColor = document.querySelector("#skinColor");
@@ -34,12 +37,25 @@ export let stats = {
     needSleep : false
 };
 
-export function setColor(){
+export function previewColor(){
+    petColor.style.fill = `rgb(${ui.redSlider.value}, ${ui.greenSlider.value}, ${ui.blueSlider.value})`;
+}
+
+export function saveColor(){
     //console.log(petColor);
     //console.log("red slider: " + ui.redSlider.value);
     //console.log("green slider: " + ui.greenSlider.value);
     //console.log("blue slider: " + ui.blueSlider.value);
-    petColor.style.fill = `rgb(${ui.redSlider.value}, ${ui.greenSlider.value}, ${ui.blueSlider.value})`;
+    oldRed = ui.redSlider.value;
+    oldGreen = ui.greenSlider.value;
+    oldBlue = ui.blueSlider.value;
+}
+
+export function revertColor(){
+    petColor.style.fill = `rgb(${oldRed},${oldGreen},${oldBlue})`;
+    ui.redSlider.value = oldRed;
+    ui.greenSlider.value = oldGreen;
+    ui.blueSlider.value = oldBlue;
 }
 
 export function feedPet(){
