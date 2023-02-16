@@ -1,6 +1,6 @@
 import express from 'express';
 
-let server = express();
+const server = express();
 
 server.use(express.static('client'));
 

@@ -28,7 +28,7 @@
 
         </svg> -->
 
-        <svg id="petWindow" width="500" height="500" viewbox="-250,-250 500,500">
+        <svg id="petWindow" width="1000" height="1000" viewbox="-250,-250 500,500">
             <circle id="skinColor" cx="0" cy="0" r="100" fill="brown"/>
               
             <defs>
@@ -64,11 +64,19 @@
         </ul>
 
         <div id="petStats">
+            <p id="petNameTxt">Pets Name: </p>
+            <input type="text" id="petName" required minlength="1">
+            <button id="nameButton">Set Name</button>
+            <p id="happyText">Happiness Stat: </p>
+            <meter id="happyMeter" min="0" max="100" high="100" optimum="100" low="40" value="0"></meter>
             <p id="foodText">Food Stat: </p>
+            <meter id="foodMeter" min="0" max="100" high="100" optimum="80" low="40" value="0"></meter>
             <button id="feedButton">Feed Pet</button>
             <p id="sleepText">Sleep Stat: </p>
+            <meter id="sleepMeter" min="0" max="100" high="100" optimum="100" low="40" value="0"></meter>
             <button id="sleepButton">Sleep Pet</button>
             <p id="cleanText">Cleanliness Stat: </p>
+            <meter id="cleanMeter" min="0" max="100" high="100" optimum="100" low="40" value="0"></meter>
             <button id="cleanButton">Clean Pet</button>  
         </div>
     </body>
