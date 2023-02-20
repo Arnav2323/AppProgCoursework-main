@@ -36,10 +36,13 @@ export const stats = {
   hungry: false,
   needClean: false,
   needSleep: false,
+  birthdate: Date.now(),
+  deathdate: null,
+  isAlive: true,
 };
 
 export function previewColor() {
-  petColor.style.fill = `rgb(${ui.redSlider.value}, ${ui.greenSlider.value}, ${ui.blueSlider.value})`;
+  petColor.style.fill = `rgb(${ui.sliders.redSlider.value}, ${ui.sliders.greenSlider.value}, ${ui.sliders.blueSlider.value})`;
 }
 
 export function saveColor() {
@@ -47,16 +50,16 @@ export function saveColor() {
   // console.log("red slider: " + ui.redSlider.value);
   // console.log("green slider: " + ui.greenSlider.value);
   // console.log("blue slider: " + ui.blueSlider.value);
-  oldRed = ui.redSlider.value;
-  oldGreen = ui.greenSlider.value;
-  oldBlue = ui.blueSlider.value;
+  oldRed = ui.sliders.redSlider.value;
+  oldGreen = ui.sliders.greenSlider.value;
+  oldBlue = ui.sliders.blueSlider.value;
 }
 
 export function revertColor() {
   petColor.style.fill = `rgb(${oldRed},${oldGreen},${oldBlue})`;
-  ui.redSlider.value = oldRed;
-  ui.greenSlider.value = oldGreen;
-  ui.blueSlider.value = oldBlue;
+  ui.sliders.redSlider.value = oldRed;
+  ui.sliders.greenSlider.value = oldGreen;
+  ui.sliders.blueSlider.value = oldBlue;
 }
 
 export function feedPet() {
@@ -84,9 +87,15 @@ export function sleepPet() {
 }
 
 export function setName() {
-  stats.name = ui.petNameInput.value;
-  ui.setPetNameButton.classList = 'hide';
-  ui.petNameInput.classList = 'hide';
-  ui.hasNameBeenSet = true;
-  console.log(ui.hasNameBeenSet);
+  stats.name = ui.inputs.petNameInput.value;
+  ui.buttons.setPetNameButton.classList = 'hide';
+  ui.inputs.petNameInput.classList = 'hide';
+  ui.setName();
+}
+
+export function death() {
+  stats.isAlive = false;
+  stats.deathdate = Date.now();
+  const timeAlive = stats.deathdate - stats.birthdate;
+  console.log(`Your Pet Lived for ${timeAlive / 1000} seconds`);
 }
