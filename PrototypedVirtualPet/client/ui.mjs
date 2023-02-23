@@ -12,6 +12,8 @@ export const buttons = {
   setPetNameButton: null,
   saveColor: null,
   revertColor: null,
+  saveGameButton: null,
+  loadGameButton: null,
 };
 
 export const labels = {
@@ -83,6 +85,8 @@ function eventListeners() {
   inputs.petNameInput = document.querySelector('#petName');
   buttons.setPetNameButton = document.querySelector('#nameButton');
   labels.petNameTxt = document.querySelector('#petNameTxt');
+  buttons.saveGameButton = document.querySelector('#saveGameButton');
+  buttons.loadGameButton = document.querySelector('#loadGameButton');
 
   buttons.feedButton.addEventListener('click', pet.feedPet);
   buttons.cleanButton.addEventListener('click', pet.cleanPet);
@@ -93,6 +97,8 @@ function eventListeners() {
   sliders.greenSlider.addEventListener('click', pet.previewColor);
   sliders.blueSlider.addEventListener('click', pet.previewColor);
   buttons.setPetNameButton.addEventListener('click', pet.setName);
+  buttons.saveGameButton.addEventListener('click', pet.saveGame);
+  buttons.loadGameButton.addEventListener('click', pet.loadGame);
 }
 
 

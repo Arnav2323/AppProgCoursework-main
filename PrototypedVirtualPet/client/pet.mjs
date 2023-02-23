@@ -4,9 +4,6 @@ import * as ui from './ui.mjs';
 window.addEventListener('load', eventListeners);
 
 let petColor;
-let oldRed;
-let oldGreen;
-let oldBlue;
 
 function eventListeners() {
   petColor = document.querySelector('#skinColor');
@@ -33,12 +30,12 @@ export const stats = {
   cleanliness: 50,
   sleep: 50,
   happiness: 50,
-  hungry: false,
-  needClean: false,
-  needSleep: false,
   birthdate: Date.now(),
   deathdate: null,
   isAlive: true,
+  red: 255,
+  green: 0,
+  blue: 0,
 };
 
 export function previewColor() {
@@ -46,20 +43,16 @@ export function previewColor() {
 }
 
 export function saveColor() {
-  // console.log(petColor);
-  // console.log("red slider: " + ui.redSlider.value);
-  // console.log("green slider: " + ui.greenSlider.value);
-  // console.log("blue slider: " + ui.blueSlider.value);
-  oldRed = ui.sliders.redSlider.value;
-  oldGreen = ui.sliders.greenSlider.value;
-  oldBlue = ui.sliders.blueSlider.value;
+  stats.red = ui.sliders.redSlider.value;
+  stats.green = ui.sliders.greenSlider.value;
+  stats.blue = ui.sliders.blueSlider.value;
 }
 
 export function revertColor() {
-  petColor.style.fill = `rgb(${oldRed},${oldGreen},${oldBlue})`;
-  ui.sliders.redSlider.value = oldRed;
-  ui.sliders.greenSlider.value = oldGreen;
-  ui.sliders.blueSlider.value = oldBlue;
+  petColor.style.fill = `rgb(${stats.red},${stats.green},${stats.blue})`;
+  ui.sliders.redSlider.value = stats.red;
+  ui.sliders.greenSlider.value = stats.green;
+  ui.sliders.blueSlider.value = stats.blue;
 }
 
 export function feedPet() {
@@ -93,9 +86,39 @@ export function setName() {
   ui.setName();
 }
 
+export function loadName() {
+  ui.buttons.setPetNameButton.classList = 'hide';
+  ui.inputs.petNameInput.classList = 'hide';
+  ui.setName();
+}
+
 export function death() {
   stats.isAlive = false;
   stats.deathdate = Date.now();
   const timeAlive = stats.deathdate - stats.birthdate;
   console.log(`Your Pet Lived for ${timeAlive / 1000} seconds`);
+}
+
+export function saveGame() {
+  const saveGame = JSON.stringify(stats);
+  localStorage.setItem('stats', saveGame);
+  console.log(localStorage);
+}
+
+export function loadGame() {
+  const gameSave = localStorage.getItem('stats');
+  const load = JSON.parse(gameSave);
+  stats.name = load.name;
+  stats.food = load.food;
+  stats.sleep = load.sleep;
+  stats.cleanliness = load.cleanliness;
+  stats.happiness = load.happiness;
+  stats.birthdate = load.birthdate;
+  stats.red = load.red;
+  stats.green = load.green;
+  stats.blue = load.blue;
+  // sets everything from the save to as it was before the save to restore the game state
+  loadName();
+  revertColor();
+  console.log(load);
 }
