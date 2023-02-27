@@ -16,13 +16,13 @@ function eventListeners() {
 
 // Incriment Varibles (Per Click)
 const foodInc = 15.0;
-const sleepInc = 75.0;
+const sleepInc = 50.0;
 const cleanlinessInc = 100.0;
 
 // Decrement Variables (Per Second)
-export const foodDec = 0.5;
-export const sleepDec = 0.5;
-export const cleanlinessDec = 0.25;
+export const foodDec = 1.5;
+export const sleepDec = 1.5;
+export const cleanlinessDec = 3.0;
 
 export const stats = {
   name: 'default',
@@ -96,7 +96,9 @@ export function death() {
   stats.isAlive = false;
   stats.deathdate = Date.now();
   const timeAlive = stats.deathdate - stats.birthdate;
-  console.log(`Your Pet Lived for ${timeAlive / 1000} seconds`);
+  alert(`Your pet ${stats.name} has died they lived for ${timeAlive / 1000} seconds
+  :(.`);
+  localStorage.clear();
 }
 
 export function saveGame() {
@@ -120,5 +122,4 @@ export function loadGame() {
   // sets everything from the save to as it was before the save to restore the game state
   loadName();
   revertColor();
-  console.log(load);
 }

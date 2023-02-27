@@ -41,27 +41,6 @@ export const inputs = {
   petNameInput: null,
 };
 
-// let feedButton;
-// let cleanButton;
-// let sleepButton;
-// let feedPetTxt;
-// let sleepPetTxt;
-// let cleanPetTxt;
-// let happinessTxt;
-// let happyMeter;
-// let foodMeter;
-// let sleepMeter;
-// let cleanMeter;
-// let petNameTxt;
-// let setPetNameButton;
-// let petNameInput;
-
-// let redSlider;
-// let greenSlider;
-// let blueSlider;
-// let saveColor;
-// let revertColor;
-
 // gets all the buttonns and text I want to read/write
 // adds event listeners to buttons that call
 // specfic functions when a certain button is pressed

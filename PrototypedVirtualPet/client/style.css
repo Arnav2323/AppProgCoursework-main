@@ -75,6 +75,12 @@ button:hover{
     width: 10em;
 }
 
+#settingsPanel{
+    grid-column: 1;
+    grid-row: 2;
+    
+}
+
 meter{
     font-size: 2em;
 }
