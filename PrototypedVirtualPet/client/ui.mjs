@@ -41,6 +41,8 @@ export const inputs = {
   petNameInput: null,
 };
 
+const canvas = document.getElementById('canvasWindow');
+const ctx = canvas.getContext('2d');
 // gets all the buttonns and text I want to read/write
 // adds event listeners to buttons that call
 // specfic functions when a certain button is pressed
@@ -86,6 +88,7 @@ export function ui() {
   labels.cleanPetTxt.textContent = `Cleanliness Stat: ${pet.stats.cleanliness}`;
   labels.sleepPetTxt.textContent = `Sleep Stat: ${pet.stats.sleep}`;
   labels.happinessTxt.textContent = `Happiness Stat: ${pet.stats.happiness}`;
+  drawPet();
 
   // Meters Updating Below
   meters.foodMeter.value = pet.stats.food;
@@ -96,4 +99,25 @@ export function ui() {
 
 export function setName() {
   labels.petNameTxt.textContent = `Pet Name: ${pet.stats.name}`;
+}
+
+function drawPet() {
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  ctx.beginPath();
+  ctx.fillStyle = 'white';
+  ctx.arc(250, 250, 100, 0, Math.PI * 2, true);
+  ctx.fill();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.arc(220, 220, 20, 0, Math.PI * 2, true);
+  ctx.arc(280, 220, 20, 0, Math.PI * 2, true);
+  ctx.fill();
+  ctx.closePath();
+
+  ctx.beginPath();
+  ctx.arc(250, 280, 40, 0, Math.PI, false);
+  ctx.fill();
+  ctx.closePath();
 }
