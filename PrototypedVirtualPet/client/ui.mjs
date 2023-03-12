@@ -41,8 +41,18 @@ export const inputs = {
   petNameInput: null,
 };
 
+const animSelector = {
+  happyAnim: 0,
+  sadAnim: 1,
+};
+
 const canvas = document.getElementById('canvasWindow');
 const ctx = canvas.getContext('2d');
+
+const spriteSheet = new Image();
+spriteSheet.src = 'Assets/catanim128.png';
+
+let animTick = 0;
 // gets all the buttonns and text I want to read/write
 // adds event listeners to buttons that call
 // specfic functions when a certain button is pressed
@@ -88,36 +98,45 @@ export function ui() {
   labels.cleanPetTxt.textContent = `Cleanliness Stat: ${pet.stats.cleanliness}`;
   labels.sleepPetTxt.textContent = `Sleep Stat: ${pet.stats.sleep}`;
   labels.happinessTxt.textContent = `Happiness Stat: ${pet.stats.happiness}`;
-  drawPet();
+
+  animationHandler(spriteSheet, animTick, 0, 20, 24, animSelector.sadAnim);
 
   // Meters Updating Below
   meters.foodMeter.value = pet.stats.food;
   meters.cleanMeter.value = pet.stats.cleanliness;
   meters.sleepMeter.value = pet.stats.sleep;
   meters.happyMeter.value = pet.stats.happiness;
+  console.log(animTick);
+  animTick += 1;
+
+  if (animTick > 30) {
+    animTick = 0;
+  }
 }
 
 export function setName() {
   labels.petNameTxt.textContent = `Pet Name: ${pet.stats.name}`;
 }
 
-function drawPet() {
+function drawPet(spriteSheet, sx, sy) {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-  ctx.beginPath();
-  ctx.fillStyle = 'white';
-  ctx.arc(250, 250, 100, 0, Math.PI * 2, true);
-  ctx.fill();
-  ctx.closePath();
+  ctx.drawImage(spriteSheet, sx, sy, 128, 128, 150, 250, spriteSheet.width / 2, spriteSheet.height / 2);
+}
 
-  ctx.beginPath();
-  ctx.fillStyle = 'black';
-  ctx.arc(220, 220, 20, 0, Math.PI * 2, true);
-  ctx.arc(280, 220, 20, 0, Math.PI * 2, true);
-  ctx.fill();
-  ctx.closePath();
+function animationHandler(spriteSheet, animTick, anim1, anim2, anim3, aninSelector) {
+  const positionSx = [0, 128, 256];
+  const positionSy = [0, 128];
+  switch (animTick) {
+    case anim1:
+      drawPet(spriteSheet, positionSx[0], positionSy[aninSelector]);
+      break;
 
-  ctx.beginPath();
-  ctx.arc(250, 280, 40, 0, Math.PI, false);
-  ctx.fill();
-  ctx.closePath();
+    case anim2:
+      drawPet(spriteSheet, positionSx[1], positionSy[aninSelector]);
+      break;
+
+    case anim3:
+      drawPet(spriteSheet, positionSx[2], positionSy[aninSelector]);
+      break;
+  }
 }
