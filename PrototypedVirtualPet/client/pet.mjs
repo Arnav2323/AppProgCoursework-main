@@ -20,9 +20,9 @@ const sleepInc = 50.0;
 const cleanlinessInc = 100.0;
 
 // Decrement Variables (Per Second)
-export const foodDec = 1.5;
-export const sleepDec = 1.5;
-export const cleanlinessDec = 3.0;
+export const foodDec = 0.5;
+export const sleepDec = 0.5;
+export const cleanlinessDec = 1.0;
 
 export const stats = {
   name: 'default',
@@ -33,26 +33,14 @@ export const stats = {
   birthdate: Date.now(),
   deathdate: null,
   isAlive: true,
-  red: 255,
-  green: 0,
-  blue: 0,
+  aliveTime: 0,
 };
+
+let sessionStartTime = Date.now();
+let sessionTempTime = 0;
 
 export function previewColor() {
   petColor.style.fill = `rgb(${ui.sliders.redSlider.value}, ${ui.sliders.greenSlider.value}, ${ui.sliders.blueSlider.value})`;
-}
-
-export function saveColor() {
-  stats.red = ui.sliders.redSlider.value;
-  stats.green = ui.sliders.greenSlider.value;
-  stats.blue = ui.sliders.blueSlider.value;
-}
-
-export function revertColor() {
-  petColor.style.fill = `rgb(${stats.red},${stats.green},${stats.blue})`;
-  ui.sliders.redSlider.value = stats.red;
-  ui.sliders.greenSlider.value = stats.green;
-  ui.sliders.blueSlider.value = stats.blue;
 }
 
 export function feedPet() {
@@ -102,9 +90,11 @@ export function death() {
 }
 
 export function saveGame() {
+  stats.aliveTime += timeAliveCalc();
+  sessionStartTime = Date.now();
   const saveGame = JSON.stringify(stats);
   localStorage.setItem('stats', saveGame);
-  console.log(localStorage);
+  console.log(saveGame);
 }
 
 export function loadGame() {
@@ -119,7 +109,12 @@ export function loadGame() {
   stats.red = load.red;
   stats.green = load.green;
   stats.blue = load.blue;
+  stats.aliveTime = load.aliveTime;
   // sets everything from the save to as it was before the save to restore the game state
   loadName();
-  revertColor();
+}
+
+export function timeAliveCalc() {
+  sessionTempTime = (Date.now() - sessionStartTime) / 1000;
+  return sessionTempTime;
 }
