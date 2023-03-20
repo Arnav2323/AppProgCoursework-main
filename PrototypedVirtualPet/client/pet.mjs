@@ -1,5 +1,6 @@
 'use strict';
 import * as ui from './ui.mjs';
+import * as update from './update.mjs';
 
 window.addEventListener('load', eventListeners);
 
@@ -23,6 +24,8 @@ const cleanlinessInc = 100.0;
 export const foodDec = 0.5;
 export const sleepDec = 0.5;
 export const cleanlinessDec = 1.0;
+
+let gameStarted = false;
 
 export const stats = {
   name: 'default',
@@ -68,6 +71,10 @@ export function sleepPet() {
 }
 
 export function setName() {
+  sessionStartTime = Date.now(); // Resets timers so players can cheat and idle extra time without playing
+  sessionTempTime = 0;
+  setInterval(update.decrementStats, 1000);// Starts the game. 1 update per second.
+
   stats.name = ui.inputs.petNameInput.value;
   ui.buttons.setPetNameButton.classList = 'hide';
   ui.inputs.petNameInput.classList = 'hide';
@@ -98,20 +105,26 @@ export function saveGame() {
 }
 
 export function loadGame() {
-  const gameSave = localStorage.getItem('stats');
-  const load = JSON.parse(gameSave);
-  stats.name = load.name;
-  stats.food = load.food;
-  stats.sleep = load.sleep;
-  stats.cleanliness = load.cleanliness;
-  stats.happiness = load.happiness;
-  stats.birthdate = load.birthdate;
-  stats.red = load.red;
-  stats.green = load.green;
-  stats.blue = load.blue;
-  stats.aliveTime = load.aliveTime;
-  // sets everything from the save to as it was before the save to restore the game state
-  loadName();
+  if (gameStarted === false && localStorage.length > 0) {
+    console.log('game loading');
+    sessionStartTime = Date.now(); // Resets timers so players can cheat and idle extra time without playing
+    sessionTempTime = 0;
+    setInterval(update.decrementStats, 1000);// Starts the game. 1 update per second.
+
+    const gameSave = localStorage.getItem('stats');
+    const load = JSON.parse(gameSave);
+    stats.name = load.name;
+    stats.food = load.food;
+    stats.sleep = load.sleep;
+    stats.cleanliness = load.cleanliness;
+    stats.happiness = load.happiness;
+    stats.birthdate = load.birthdate;
+    stats.aliveTime = load.aliveTime;
+    // sets everything from the save to as it was before the save to restore the game state
+    loadName();
+    gameStarted = true;
+  }
+  console.log('game loaded');
 }
 
 export function timeAliveCalc() {
