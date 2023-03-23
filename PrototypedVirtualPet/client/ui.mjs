@@ -115,7 +115,7 @@ export function setName() {
 
 function drawPet(spriteSheet, sx, sy) {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-  ctx.drawImage(spriteSheet, sx, sy, 128, 128, 150, 250, spriteSheet.width, spriteSheet.height);
+  ctx.drawImage(spriteSheet, sx, sy, 128, 128, 150, 200, spriteSheet.width, spriteSheet.height);
 }
 
 function animationHandler(spriteSheet, animTick, anim1, anim2, anim3, animSelector) {

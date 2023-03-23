@@ -23,7 +23,7 @@ const cleanlinessInc = 100.0;
 // Decrement Variables (Per Second)
 export const foodDec = 0.5;
 export const sleepDec = 0.5;
-export const cleanlinessDec = 1.0;
+export const cleanlinessDec = 10.0;
 
 let gameStarted = false;
 
@@ -90,7 +90,7 @@ export function loadName() {
 export function death() {
   stats.isAlive = false;
   stats.deathdate = Date.now();
-  const timeAlive = stats.deathdate - stats.birthdate;
+  const timeAlive = stats.deathdate - sessionStartTime;
   alert(`Your pet ${stats.name} has died they lived for ${timeAlive / 1000} seconds
   :(.`);
   localStorage.clear();
