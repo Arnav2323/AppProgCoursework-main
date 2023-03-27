@@ -23,6 +23,7 @@ export const labels = {
   happinessTxt: null,
   petNameTxt: null,
   timeAliveTxt: null,
+  finalOutputText: null,
 };
 
 export const meters = {
@@ -73,6 +74,7 @@ function eventListeners() {
   labels.petNameTxt = document.querySelector('#petNameTxt');
   buttons.saveGameButton = document.querySelector('#saveGameButton');
   buttons.loadGameButton = document.querySelector('#loadGameButton');
+  labels.finalOutputText = document.querySelector('#finalOutputText');
 
   buttons.feedButton.addEventListener('click', pet.feedPet);
   buttons.cleanButton.addEventListener('click', pet.cleanPet);
@@ -81,7 +83,6 @@ function eventListeners() {
   buttons.saveGameButton.addEventListener('click', pet.saveGame);
   buttons.loadGameButton.addEventListener('click', pet.loadGame);
 }
-
 
 export function ui() {
   labels.feedPetTxt.textContent = `Food Stat: ${pet.stats.food}`;

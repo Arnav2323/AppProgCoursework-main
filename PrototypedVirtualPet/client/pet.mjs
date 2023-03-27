@@ -4,16 +4,9 @@ import * as update from './update.mjs';
 
 window.addEventListener('load', eventListeners);
 
-let petColor;
-
 function eventListeners() {
-  petColor = document.querySelector('#skinColor');
-}
 
-// Flags for certain behaviours to occur
-// export let hungry = false;
-// export let needClean = false;
-// export let needSleep = false; //ASK MATT OR RICH WHY THIS IS STILL WORKING EVEN WHEN COMMENTED OUT!!!!!!!!!!!!!!!
+}
 
 // Incriment Varibles (Per Click)
 const foodInc = 15.0;
@@ -41,10 +34,6 @@ export const stats = {
 
 let sessionStartTime = Date.now();
 let sessionTempTime = 0;
-
-export function previewColor() {
-  petColor.style.fill = `rgb(${ui.sliders.redSlider.value}, ${ui.sliders.greenSlider.value}, ${ui.sliders.blueSlider.value})`;
-}
 
 export function feedPet() {
   if ((stats.food + foodInc) > 100) {
@@ -90,9 +79,9 @@ export function loadName() {
 export function death() {
   stats.isAlive = false;
   stats.deathdate = Date.now();
-  const timeAlive = stats.deathdate - sessionStartTime;
-  alert(`Your pet ${stats.name} has died they lived for ${timeAlive / 1000} seconds
-  :(.`);
+  stats.aliveTime += timeAliveCalc();
+  ui.labels.finalOutputText.textContent = `Your pet ${stats.name} has died they lived for ${stats.aliveTime} seconds
+  :(.`;
   localStorage.clear();
 }
 
