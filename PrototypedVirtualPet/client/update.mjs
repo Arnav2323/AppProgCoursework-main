@@ -21,7 +21,7 @@ export function decrementStats() {
     pet.death();
   } else {
     pet.stats.cleanliness -= pet.cleanlinessDec * timeScale;
-    pet.stats.needClean = false;
+    // pet.stats.needClean = false;
   }
 
   if (pet.stats.sleep <= 0) {

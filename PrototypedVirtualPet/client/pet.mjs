@@ -14,9 +14,9 @@ const sleepInc = 50.0;
 const cleanlinessInc = 100.0;
 
 // Decrement Variables (Per Second)
-export const foodDec = 0.5;
-export const sleepDec = 0.5;
-export const cleanlinessDec = 1.0;
+export const foodDec = 1.0;
+export const sleepDec = 1.0;
+export const cleanlinessDec = 2.0;
 
 let gameStarted = false;
 
@@ -26,10 +26,9 @@ export const stats = {
   cleanliness: 50,
   sleep: 50,
   happiness: 50,
-  birthdate: Date.now(),
-  deathdate: null,
   isAlive: true,
   aliveTime: 0,
+  hasCheated: false,
 };
 
 
@@ -80,8 +79,11 @@ export function death() {
   stats.isAlive = false;
   ui.divs.gameOverScreen.classList.remove('hide');
   stats.deathdate = Date.now();
+  const minutes = stats.aliveTime / 60;
+  const hours = minutes / 60;
+  const days = hours / 24;
   ui.labels.finalOutputText.textContent = `Your pet ${stats.name} has died they lived for ${stats.aliveTime} seconds
-  :(.`;
+  ${Math.round(minutes)} Minutes, ${Math.round(hours)} hours, ${Math.round(days)} days.`;
   localStorage.clear();
 }
 

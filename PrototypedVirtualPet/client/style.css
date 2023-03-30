@@ -27,9 +27,9 @@ p{
 
 button{
     background-color: gray;
-    font-size: 1vmin;
-    width: 10vmin;
-    height: 5vmin;
+    font-size: 2vmin;
+    width: auto;
+    height: auto;
     border-radius: 1em;
 }
 
@@ -81,7 +81,7 @@ input{
 }
 
 #consolePanel{
-    border: solid black;
+    /* border: solid black; */ 
     width: 50vmin;
     height: 40vmin;
     background-color: #3D3D3D;
@@ -90,7 +90,7 @@ input{
 }
 
 .console{
-    color:black;
+    color:white;
 }
 
 meter{

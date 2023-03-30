@@ -104,14 +104,26 @@ function eventListeners() {
   buttons.loadGameButton.addEventListener('click', pet.loadGame);
   buttons.consoleSendButton.addEventListener('click', sendConsoleCommand);
   buttons.consoleButton.addEventListener('click', consolePanelToggle);
+
+  inputs.consoleInput.addEventListener('keypress', (e) => { // If pressing enter in CMD it auto sends command.
+    if (e.code === 'Enter') {
+      sendConsoleCommand();
+    }
+  });
+
+  inputs.petNameInput.addEventListener('keypress', (e) => { //  If pressing enter it auto sends input.
+    if (e.code === 'Enter') {
+      pet.setName();
+    }
+  });
 }
 
 export function ui() {
-  labels.feedPetTxt.textContent = `Food Stat: ${pet.stats.food}`;
-  labels.timeAliveTxt.textContent = `Time Alive: ${pet.stats.aliveTime} Seconds`;
-  labels.cleanPetTxt.textContent = `Cleanliness Stat: ${pet.stats.cleanliness}`;
-  labels.sleepPetTxt.textContent = `Sleep Stat: ${pet.stats.sleep}`;
-  labels.happinessTxt.textContent = `Happiness Stat: ${pet.stats.happiness}`;
+  labels.feedPetTxt.textContent = `Food Stat: ${Math.round(pet.stats.food)}`; // Rounding of numbers if for formatting.
+  labels.timeAliveTxt.textContent = `Time Alive: ${Math.round(pet.stats.aliveTime)} Seconds`;
+  labels.cleanPetTxt.textContent = `Cleanliness Stat: ${Math.round(pet.stats.cleanliness)}`;
+  labels.sleepPetTxt.textContent = `Sleep Stat: ${Math.round(pet.stats.sleep)}`;
+  labels.happinessTxt.textContent = `Happiness Stat: ${Math.round(pet.stats.happiness)}`;
 
   if (pet.stats.happiness >= 50) {
     animationHandler(spriteSheet, animTick, 0, 20, 24, animSelector.happyAnim);
@@ -172,12 +184,31 @@ function consolePanelToggle() {
 }
 
 function sendConsoleCommand() {
+  pet.stats.hasCheated = true;
+  const input = inputs.consoleInput.value;
+
+  if (input.includes('timescale')) { // function handles the timescale command.
+    const cmd = input.split(' ');
+    const num = parseFloat(cmd[1]);
+    if (Number.isNaN(num)) {
+      labels.consoleLogs.textContent = `Error ${cmd[1]} isn't a number. Please enter a number.`;
+      return;
+    }
+    labels.consoleLogs.textContent = `timescale ${cmd[1]}`;
+    update.timeScaleAdjust(cmd[1]);
+    inputs.consoleInput.value = '';
+    return;
+  }
+
   switch (inputs.consoleInput.value) {
     case 'help':
-      labels.consoleLogs.textContent = `command name "kill" -> this command kills the pet 
-      command name "normalspeed" -> sets game to 1.0x speed
-      command name "doublespeed" -> sets game to 2.0x speed
-      command name "quadspeed" -> sets game to 4.0x speed`;
+      labels.consoleLogs.textContent = `
+      Command name "kill" -> This command kills the pet.
+
+      Command name "timescale x" -> This command changes the speed of the game. Replace x with the number
+      you want to multiply the games speed by.
+
+      Command name "god" -> This command sets all attributes to 99999`;
       break;
 
     case 'kill':
@@ -188,21 +219,11 @@ function sendConsoleCommand() {
       inputs.consoleInput.value = '';
       break;
 
-    case 'normalspeed':
-      labels.consoleLogs.textContent = 'normalspeed actived';
-      update.timeScaleAdjust(1);
-      inputs.consoleInput.value = '';
-      break;
-
-    case 'doublespeed':
-      labels.consoleLogs.textContent = 'doublespeed actived';
-      update.timeScaleAdjust(2);
-      inputs.consoleInput.value = '';
-      break;
-
-    case 'quadspeed':
-      labels.consoleLogs.textContent = 'quadspeed actived';
-      update.timeScaleAdjust(4);
+    case 'god':
+      labels.consoleLogs.textContent = 'god mode enabled';
+      pet.stats.food = 99999;
+      pet.stats.sleep = 99999;
+      pet.stats.cleanliness = 99999;
       inputs.consoleInput.value = '';
       break;
 
