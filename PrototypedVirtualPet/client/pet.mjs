@@ -16,7 +16,7 @@ const cleanlinessInc = 100.0;
 // Decrement Variables (Per Second)
 export const foodDec = 0.5;
 export const sleepDec = 0.5;
-export const cleanlinessDec = 10.0;
+export const cleanlinessDec = 1.0;
 
 let gameStarted = false;
 
@@ -32,8 +32,6 @@ export const stats = {
   aliveTime: 0,
 };
 
-let sessionStartTime = Date.now();
-let sessionTempTime = 0;
 
 export function feedPet() {
   if ((stats.food + foodInc) > 100) {
@@ -60,9 +58,11 @@ export function sleepPet() {
 }
 
 export function setName() {
-  sessionStartTime = Date.now(); // Resets timers so players can cheat and idle extra time without playing
-  sessionTempTime = 0;
   setInterval(update.decrementStats, 1000);// Starts the game. 1 update per second.
+
+  stats.food = 50;// Setting all values once player starts game to prevent cheating.
+  stats.sleep = 50;
+  stats.cleanliness = 50;
 
   stats.name = ui.inputs.petNameInput.value;
   ui.buttons.setPetNameButton.classList = 'hide';
@@ -78,16 +78,14 @@ export function loadName() {
 
 export function death() {
   stats.isAlive = false;
+  ui.divs.gameOverScreen.classList.remove('hide');
   stats.deathdate = Date.now();
-  stats.aliveTime += timeAliveCalc();
   ui.labels.finalOutputText.textContent = `Your pet ${stats.name} has died they lived for ${stats.aliveTime} seconds
   :(.`;
   localStorage.clear();
 }
 
 export function saveGame() {
-  stats.aliveTime += timeAliveCalc();
-  sessionStartTime = Date.now();
   const saveGame = JSON.stringify(stats);
   localStorage.setItem('stats', saveGame);
   console.log(saveGame);
@@ -96,8 +94,6 @@ export function saveGame() {
 export function loadGame() {
   if (gameStarted === false && localStorage.length > 0) {
     console.log('game loading');
-    sessionStartTime = Date.now(); // Resets timers so players can cheat and idle extra time without playing
-    sessionTempTime = 0;
     setInterval(update.decrementStats, 1000);// Starts the game. 1 update per second.
 
     const gameSave = localStorage.getItem('stats');
@@ -114,9 +110,4 @@ export function loadGame() {
     gameStarted = true;
   }
   console.log('game loaded');
-}
-
-export function timeAliveCalc() {
-  sessionTempTime = (Date.now() - sessionStartTime) / 1000;
-  return sessionTempTime;
 }

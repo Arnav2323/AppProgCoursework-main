@@ -1,6 +1,7 @@
 'use strict';
 
 import * as pet from './pet.mjs';
+import * as update from './update.mjs';
 
 // Waits for window to load before adding event listeners
 window.addEventListener('load', eventListeners);
@@ -14,6 +15,8 @@ export const buttons = {
   revertColor: null,
   saveGameButton: null,
   loadGameButton: null,
+  consoleSendButton: null,
+  consoleButton: null,
 };
 
 export const labels = {
@@ -24,6 +27,7 @@ export const labels = {
   petNameTxt: null,
   timeAliveTxt: null,
   finalOutputText: null,
+  consoleLogs: null,
 };
 
 export const meters = {
@@ -35,6 +39,12 @@ export const meters = {
 
 export const inputs = {
   petNameInput: null,
+  consoleInput: null,
+};
+
+export const divs = {
+  gameOverScreen: null,
+  consolePanel: null,
 };
 
 const animSelector = {
@@ -49,6 +59,8 @@ const spriteSheet = new Image();
 spriteSheet.src = 'Assets/catanim128.png';
 
 let animTick = 0;
+
+let consolePanelHidden = true;
 
 
 // gets all the buttonns and text I want to read/write
@@ -75,6 +87,14 @@ function eventListeners() {
   buttons.saveGameButton = document.querySelector('#saveGameButton');
   buttons.loadGameButton = document.querySelector('#loadGameButton');
   labels.finalOutputText = document.querySelector('#finalOutputText');
+  divs.gameOverScreen = document.querySelector('#gameOverPanel');
+  divs.gameOverScreen.classList.add('hide');
+  inputs.consoleInput = document.querySelector('#console');
+  labels.consoleLogs = document.querySelector('#consoleLogs');
+  buttons.consoleSendButton = document.querySelector('#consoleSendButton');
+  buttons.consoleButton = document.querySelector('#consoleButton');
+  divs.consolePanel = document.querySelector('#consolePanel');
+  divs.consolePanel.classList.add('hide');
 
   buttons.feedButton.addEventListener('click', pet.feedPet);
   buttons.cleanButton.addEventListener('click', pet.cleanPet);
@@ -82,16 +102,18 @@ function eventListeners() {
   buttons.setPetNameButton.addEventListener('click', pet.setName);
   buttons.saveGameButton.addEventListener('click', pet.saveGame);
   buttons.loadGameButton.addEventListener('click', pet.loadGame);
+  buttons.consoleSendButton.addEventListener('click', sendConsoleCommand);
+  buttons.consoleButton.addEventListener('click', consolePanelToggle);
 }
 
 export function ui() {
   labels.feedPetTxt.textContent = `Food Stat: ${pet.stats.food}`;
-  labels.timeAliveTxt.textContent = `Time Alive: ${pet.stats.aliveTime + pet.timeAliveCalc()}`;
+  labels.timeAliveTxt.textContent = `Time Alive: ${pet.stats.aliveTime} Seconds`;
   labels.cleanPetTxt.textContent = `Cleanliness Stat: ${pet.stats.cleanliness}`;
   labels.sleepPetTxt.textContent = `Sleep Stat: ${pet.stats.sleep}`;
   labels.happinessTxt.textContent = `Happiness Stat: ${pet.stats.happiness}`;
 
-  if (pet.stats.happiness > 50) {
+  if (pet.stats.happiness >= 50) {
     animationHandler(spriteSheet, animTick, 0, 20, 24, animSelector.happyAnim);
   } else {
     animationHandler(spriteSheet, animTick, 0, 20, 24, animSelector.sadAnim);
@@ -133,6 +155,60 @@ function animationHandler(spriteSheet, animTick, anim1, anim2, anim3, animSelect
 
     case anim3:
       drawPet(spriteSheet, positionSx[2], positionSy[animSelector]);
+      break;
+  }
+}
+
+function consolePanelToggle() {
+  if (consolePanelHidden === true) {
+    divs.consolePanel.classList.remove('hide');
+    buttons.consoleButton.textContent = 'Close Console';
+    consolePanelHidden = false;
+    return;
+  }
+  buttons.consoleButton.textContent = 'Open Console';
+  divs.consolePanel.classList.add('hide');
+  consolePanelHidden = true;
+}
+
+function sendConsoleCommand() {
+  switch (inputs.consoleInput.value) {
+    case 'help':
+      labels.consoleLogs.textContent = `command name "kill" -> this command kills the pet 
+      command name "normalspeed" -> sets game to 1.0x speed
+      command name "doublespeed" -> sets game to 2.0x speed
+      command name "quadspeed" -> sets game to 4.0x speed`;
+      break;
+
+    case 'kill':
+      labels.consoleLogs.textContent = `${pet.stats.name} has been killed :(`;
+      pet.stats.food = 0;
+      pet.stats.sleep = 0;
+      pet.stats.cleanliness = 0;
+      inputs.consoleInput.value = '';
+      break;
+
+    case 'normalspeed':
+      labels.consoleLogs.textContent = 'normalspeed actived';
+      update.timeScaleAdjust(1);
+      inputs.consoleInput.value = '';
+      break;
+
+    case 'doublespeed':
+      labels.consoleLogs.textContent = 'doublespeed actived';
+      update.timeScaleAdjust(2);
+      inputs.consoleInput.value = '';
+      break;
+
+    case 'quadspeed':
+      labels.consoleLogs.textContent = 'quadspeed actived';
+      update.timeScaleAdjust(4);
+      inputs.consoleInput.value = '';
+      break;
+
+    default:
+      labels.consoleLogs.textContent = 'Command not found. Type help for a list of commands.';
+      inputs.consoleInput.value = '';
       break;
   }
 }

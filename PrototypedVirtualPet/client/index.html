@@ -11,7 +11,7 @@
         <div id="petStats">
             <p id="petNameTxt">Pets Name: </p>
             <input type="text" id="petName" required minlength="1">
-            <button id="nameButton">Set Name</button>
+            <button id="nameButton">Set Name/Start Game</button>
             <p id="timeAliveTxt">Time Alive: </p>
             <p id="happyText">Happiness Stat: </p>
             <meter id="happyMeter" min="0" max="100" high="100" low="40" value="0"></meter>
@@ -29,11 +29,19 @@
         <div id="settingsPanel">
             <button id="saveGameButton">Save Game</button>
             <button id="loadGameButton">Load Game</button>
+            <button id="consoleButton">Open Console</button>
         </div>
 
-        <section id="gameOverPanel">
-            <h1>Game Over</h1>
-            <p id="finalOutputText">NOT WORKING YET ADD FUNCTIONAILITY</p>
-        </section>
+        <div id="gameOverPanel">
+            <h1 class="gameOver">Game Over</h1>
+            <p class="gameOver" id="finalOutputText"></p>
+        </div>
+
+        <div id="consolePanel">
+            <h1 class="console">Console</h1>
+            <p class="console" id="consoleLogs">Type help to get a list of commands.</p>
+            <input class="console" type="text" id="console">
+            <button id="consoleSendButton">Send</button>
+        </div>
     </body>
 </html>
