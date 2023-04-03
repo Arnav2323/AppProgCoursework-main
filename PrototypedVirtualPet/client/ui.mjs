@@ -209,6 +209,7 @@ function sendConsoleCommand() {
       you want to multiply the games speed by.
 
       Command name "god" -> This command sets all attributes to 99999`;
+      inputs.consoleInput.value = '';
       break;
 
     case 'kill':
