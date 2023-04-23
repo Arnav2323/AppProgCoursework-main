@@ -8,7 +8,7 @@
 # Core Features (requied features)
 ## Pet stat management
 How it works:
-The pets stats slowly decrement over time, the players job is to manage these stats by feeding, cleaning and putting the pet to sleep. If any of these stats hit 0 the pet will die.
+The pets stats slowly decrement over time, the players job is to manage these stats by feeding, cleaning and putting the pet to sleep. If any of these stats hit 0 the pet will die. The happiness stat is calculated using the pets food, sleep and cleanliness stats.
 
 ## Web server
 The game is hosted on a web server using express.js.
@@ -29,7 +29,7 @@ To access the console click the "Open Console" button. To close the console clic
 Rationale: 
 A console is a great tool that is used for the development of the game. However, a console is also fun for users as it allows experiment with the game and try different ways of playing the same game.
 
-# Mood based facial expressions
+## Mood based facial expressions
 How it works:
 The pet cat animations change depending on the pet's happiness. Once the pet's happiness reaches a certain threshold, its mood/facial expression changes.
 
