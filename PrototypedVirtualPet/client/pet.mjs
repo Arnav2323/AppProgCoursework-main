@@ -99,6 +99,7 @@ export function saveGame() {
 export function loadGame() {
   if (gameStarted === false && localStorage.length > 0) {
     console.log('game loading');
+    clearInterval(decrementStatsInterval); // Stops players from being able to bug the game into 2x speed by clearing the previously started setInterval
     decrementStatsInterval = setInterval(update.decrementStats, 1000);// Starts the game. 1 update per second.
     const gameSave = localStorage.getItem('stats');
     const load = JSON.parse(gameSave);
