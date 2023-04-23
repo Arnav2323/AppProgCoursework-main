@@ -5,20 +5,20 @@
 
 3 - Click the feed pet, sleep pet and clean pet buttons to manage the pets attributes.
 
-# Core Features (requied features)
+# Core Features (required features)
 ## Pet stat management
 How it works:
-The pets stats slowly decrement over time, the players job is to manage these stats by feeding, cleaning and putting the pet to sleep. If any of these stats hit 0 the pet will die. The happiness stat is calculated using the pets food, sleep and cleanliness stats.
+The pets stats slowly decrement over time, and the players job is to manage these stats by feeding, cleaning and putting the pet to sleep. If any of these stats hit 0, the pet will die. The happiness stat is calculated using the pet's food, sleep and cleanliness stats.
 
 ## Web server
 The game is hosted on a web server using express.js.
 
-## Pet displayed in app
+## Pet displayed in the app
 The pet is displayed within the web application.
 
 ## Death screen
-When the pet dies the player is notified and is shown how long the pet survived in seconds, minutes, hours and days.
-Note: All of these values are rounded so seconds are the most accurate.
+When the pet dies, the player is notified and is shown how long the pet survived in seconds, minutes, hours and days.
+Note: These values are rounded, so seconds are the most accurate.
 
 # Key Features
 
@@ -29,7 +29,7 @@ To access the console click the "Open Console" button. To close the console clic
 Rationale: 
 A console is a great tool that is used for the development of the game. However, a console is also fun for users as it allows experiment with the game and try different ways of playing the same game.
 
-## Mood based facial expressions
+## Mood-based facial expressions
 How it works:
 The pet cat animations change depending on the pet's happiness. Once the pet's happiness reaches a certain threshold, its mood/facial expression changes.
 
@@ -39,7 +39,7 @@ Mood-based facial expressions make the pet feel more real, making the game more 
 # Upcoming Features
 
 ## Leaderboard 
-In the future, I plan to add leaderboards to make the game more fun and competitive. Players score will be how long their put survived.
+In the future, I plan to add leaderboards to make the game more fun and competitive. The player's score will be how long their put survived.
 
 ## Workshop
 I plan to add a workshop where people can create and upload their own pets and animations, making the game much more customisable. Users will also be able to download other players' creations.
