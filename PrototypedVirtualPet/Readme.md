@@ -44,5 +44,5 @@ In the future, I plan to add leaderboards to make the game more fun and competit
 ## Workshop
 I plan to add a workshop where people can create and upload their own pets and animations, making the game much more customisable. Users will also be able to download other players' creations.
 
-# Refrence
+# References 
 [MDN](https://developer.mozilla.org/en-US/)
