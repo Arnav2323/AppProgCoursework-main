@@ -1,6 +1,8 @@
 # How to play
 1 - "npm start" will begin the web server on port 8080.
+
 2 - Enter the pet's name and press 'Set Name/Start Game' button.
+
 3 - Click the feed pet, sleep pet and clean pet buttons to manage attribute.
 
 # Core Features (requied features)
@@ -27,7 +29,7 @@ The pet cat animations change depending on the pet's happiness. Once the pet's h
 Rationale:
 Mood-based facial expressions make the pet feel more real, making the game more engaging for the player.
 
-# Upcoming Features**
+# Upcoming Features
 
 ## Leaderboard 
 In the future, I plan to add leaderboards to make the game more fun and competitive.
