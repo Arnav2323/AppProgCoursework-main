@@ -3,7 +3,7 @@
 
 2 - Enter the pet's name and press 'Set Name/Start Game' button.
 
-3 - Click the feed pet, sleep pet and clean pet buttons to manage attribute.
+3 - Click the feed pet, sleep pet and clean pet buttons to manage the pets attributes.
 
 # Core Features (requied features)
 ## Pet stat management
@@ -11,7 +11,14 @@ How it works:
 The pets stats slowly decrement over time, the players job is to manage these stats by feeding, cleaning and putting the pet to sleep. If any of these stats hit 0 the pet will die.
 
 ## Web server
-The game is hosted on a web server using express.js. 
+The game is hosted on a web server using express.js.
+
+## Pet displayed in app
+The pet is displayed within the web application.
+
+## Death screen
+When the pet dies the player is notified and is shown how long the pet survived in seconds, minutes, hours and days.
+Note: All of these values are rounded so seconds are the most accurate.
 
 # Key Features
 
@@ -32,7 +39,7 @@ Mood-based facial expressions make the pet feel more real, making the game more 
 # Upcoming Features
 
 ## Leaderboard 
-In the future, I plan to add leaderboards to make the game more fun and competitive.
+In the future, I plan to add leaderboards to make the game more fun and competitive. Players score will be how long their put survived.
 
 ## Workshop
 I plan to add a workshop where people can create and upload their own pets and animations, making the game much more customisable. Users will also be able to download other players' creations.
