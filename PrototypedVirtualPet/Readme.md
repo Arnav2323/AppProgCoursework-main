@@ -1,11 +1,19 @@
-**How to play**
+# How to play
+1 - "npm start" will begin the web server on port 8080.
+2 - Enter the pet's name and press 'Set Name/Start Game' button.
+3 - Click the feed pet, sleep pet and clean pet buttons to manage attribute.
 
-**Core Features**
+# Core Features (requied features)
+## Pet stat management
+How it works:
+The pets stats slowly decrement over time, the players job is to manage these stats by feeding, cleaning and putting the pet to sleep. If any of these stats hit 0 the pet will die.
 
+## Web server
+The game is hosted on a web server using express.js. 
 
+# Key Features
 
-**Key Features**
-# Console
+## Console
 How it works:
 To access the console click the "Open Console" button. To close the console click the "Close Console" button. To use the console, type "help" to get a list of commands with a small description of each and how to use them. Once a player has used the console commands on their game, the save will not be valid, so in the future, once leaderboards have been added, people can't cheat. This is achieved by storing a hasCheated boolean in the player's stats and then setting this to true once the player uses console commands.
 
@@ -19,10 +27,13 @@ The pet cat animations change depending on the pet's happiness. Once the pet's h
 Rationale:
 Mood-based facial expressions make the pet feel more real, making the game more engaging for the player.
 
-**Upcoming Features**
+# Upcoming Features**
 
-# Leaderboard 
+## Leaderboard 
 In the future, I plan to add leaderboards to make the game more fun and competitive.
 
-# Workshop
+## Workshop
 I plan to add a workshop where people can create and upload their own pets and animations, making the game much more customisable. Users will also be able to download other players' creations.
+
+# Refrence
+[MDN](https://developer.mozilla.org/en-US/)

@@ -8,7 +8,7 @@ function eventListeners() {
 
 }
 
-// Incriment Varibles (Per Click)
+// Increment Varibles (Per Click)
 const foodInc = 15.0;
 const sleepInc = 50.0;
 const cleanlinessInc = 100.0;
@@ -121,6 +121,8 @@ export function restartGame() {
   console.log(decrementStatsInterval);
   console.log('restart game');
   clearInterval(decrementStatsInterval);
+  ui.divs.gameOverScreen.classList.add('hide');
+  stats.isAlive = true;
   stats.food = 50;
   stats.sleep = 50;
   stats.cleanliness = 50;
