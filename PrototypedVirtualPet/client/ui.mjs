@@ -17,6 +17,7 @@ export const buttons = {
   loadGameButton: null,
   consoleSendButton: null,
   consoleButton: null,
+  restartGameButton: null,
 };
 
 export const labels = {
@@ -95,6 +96,7 @@ function eventListeners() {
   buttons.consoleButton = document.querySelector('#consoleButton');
   divs.consolePanel = document.querySelector('#consolePanel');
   divs.consolePanel.classList.add('hide');
+  buttons.restartGameButton = document.querySelector('#restartGameButton');
 
   buttons.feedButton.addEventListener('click', pet.feedPet);
   buttons.cleanButton.addEventListener('click', pet.cleanPet);
@@ -104,6 +106,7 @@ function eventListeners() {
   buttons.loadGameButton.addEventListener('click', pet.loadGame);
   buttons.consoleSendButton.addEventListener('click', sendConsoleCommand);
   buttons.consoleButton.addEventListener('click', consolePanelToggle);
+  buttons.restartGameButton.addEventListener('click', pet.restartGame);
 
   inputs.consoleInput.addEventListener('keypress', (e) => { // If pressing enter in CMD it auto sends command.
     if (e.code === 'Enter') {

@@ -1,3 +1,6 @@
+**How to play**
+
+
 **Features**
 
 # Set Name / Start Game
@@ -16,3 +19,12 @@ and continue playing.
 # Console
 To access the console click the "Open Console" button. To close the console click the "Close Console" button. To use the console, type "help" to get a list of commands with a small description of each and how to use them. Once a player has used the console commands on their game, the save will not be valid, so in the future, once leaderboards have been added, people can't cheat. This is achieved by storing a hasCheated boolean in the player's stats and then setting this to true once the player uses console commands.
 
+# Mood based facial expressions
+The pet cats animations change depending on the pets happniess.
+
+**Upcoming Features**
+
+# Leaderboard 
+
+
+# Workshop

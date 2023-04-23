@@ -18,6 +18,9 @@ export const foodDec = 1.0;
 export const sleepDec = 1.0;
 export const cleanlinessDec = 2.0;
 
+// setIntervals
+let decrementStatsInterval;
+
 let gameStarted = false;
 
 export const stats = {
@@ -57,7 +60,7 @@ export function sleepPet() {
 }
 
 export function setName() {
-  setInterval(update.decrementStats, 1000);// Starts the game. 1 update per second.
+  decrementStatsInterval = setInterval(update.decrementStats, 1000);// Starts the game. 1 update per second.
 
   stats.food = 50;// Setting all values once player starts game to prevent cheating.
   stats.sleep = 50;
@@ -96,8 +99,7 @@ export function saveGame() {
 export function loadGame() {
   if (gameStarted === false && localStorage.length > 0) {
     console.log('game loading');
-    setInterval(update.decrementStats, 1000);// Starts the game. 1 update per second.
-
+    decrementStatsInterval = setInterval(update.decrementStats, 1000);// Starts the game. 1 update per second.
     const gameSave = localStorage.getItem('stats');
     const load = JSON.parse(gameSave);
     stats.name = load.name;
@@ -112,4 +114,16 @@ export function loadGame() {
     gameStarted = true;
   }
   console.log('game loaded');
+}
+
+export function restartGame() {
+  console.log(decrementStatsInterval);
+  console.log('restart game');
+  clearInterval(decrementStatsInterval);
+  stats.food = 50;
+  stats.sleep = 50;
+  stats.cleanliness = 50;
+  stats.aliveTime = 0;
+  ui.buttons.setPetNameButton.classList = '';
+  ui.inputs.petNameInput.classList = '';
 }
