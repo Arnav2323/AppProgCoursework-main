@@ -1,30 +1,28 @@
 **How to play**
 
+**Core Features**
 
-**Features**
 
-# Set Name / Start Game
-To begin playing the game, enter the pet's name and press enter or click the "Set Name/Start Game" button.
 
-# Manage Pets Stats
-To manage the pets stats you have three buttons. "Feed Pet", "Sleep Pet" and "Clean Pet". These stats decrement over time its the players responability to keep these above 0. These 3 stats form the happiness stat for the pet. If any of the stats hit 0 the pets dies.
-
-# Load Game
-To load a save, click the 'Load Game' button. This will load all relevant stats and continue the game from where the player saved.
-
-# Save Game
-To save the game, click the 'Save Game' button. This will store the relevant stats in local storage so the player can come back at a later date 
-and continue playing.
-
+**Key Features**
 # Console
+How it works:
 To access the console click the "Open Console" button. To close the console click the "Close Console" button. To use the console, type "help" to get a list of commands with a small description of each and how to use them. Once a player has used the console commands on their game, the save will not be valid, so in the future, once leaderboards have been added, people can't cheat. This is achieved by storing a hasCheated boolean in the player's stats and then setting this to true once the player uses console commands.
 
+Rationale: 
+A console is a great tool that is used for the development of the game. However, a console is also fun for users as it allows experiment with the game and try different ways of playing the same game.
+
 # Mood based facial expressions
-The pet cats animations change depending on the pets happniess.
+How it works:
+The pet cat animations change depending on the pet's happiness. Once the pet's happiness reaches a certain threshold, its mood/facial expression changes.
+
+Rationale:
+Mood-based facial expressions make the pet feel more real, making the game more engaging for the player.
 
 **Upcoming Features**
 
 # Leaderboard 
-
+In the future, I plan to add leaderboards to make the game more fun and competitive.
 
 # Workshop
+I plan to add a workshop where people can create and upload their own pets and animations, making the game much more customisable. Users will also be able to download other players' creations.
