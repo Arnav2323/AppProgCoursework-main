@@ -20,6 +20,9 @@ The pet is displayed within the web application.
 When the pet dies, the player is notified and is shown how long the pet survived in seconds, minutes, hours and days.
 Note: These values are rounded, so seconds are the most accurate.
 
+## Save/Load
+I decided to use local storage to save the player's progress. I have done this because it's the most straightforward method and gives me all the necessary functionality. Using a database would have over-complicated the project and was unnecessary for this project.
+
 # Key Features
 
 ## Console
@@ -49,3 +52,4 @@ Overall I am satisfied with my project, and I have met all the base requirements
 
 # References 
 [MDN](https://developer.mozilla.org/en-US/)
+ I read MDN throughout the project but did not copy anything.
