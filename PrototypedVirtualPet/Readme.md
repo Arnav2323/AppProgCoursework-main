@@ -44,5 +44,8 @@ In the future, I plan to add leaderboards to make the game more fun and competit
 ## Workshop
 I plan to add a workshop where people can create and upload their own pets and animations, making the game much more customisable. Users will also be able to download other players' creations.
 
+# Reflection
+Overall I am satisfied with my project, and I have met all the base requirements and even added some extra features. Upon reflection, I should have spent more time on this project as I could have created the leaderboard and workshop system, which would have made my program better. Throughout this project, I struggled with CSS despite that I managed to get a nice-looking simple website layout; however, it could have been better if I could do it from scratch with the knowledge I gained. My main strength throughout this project was Javascript. I felt comfortable coding the backend systems, such as the console and the pet animation system.
+
 # References 
 [MDN](https://developer.mozilla.org/en-US/)
